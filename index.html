@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Home Calisthenics + Fat-Loss Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12141c; --panel:#1b1e2a; --panel2:#20243380; --line:#2b2f40;
+    --ink:#f1f0ec; --muted:#9298ac; --accent:#8b7ff0;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --bg:#f6f5f1; --panel:#ffffff; --panel2:#eeecf7; --line:#e3e1da;
+      --ink:#1a1c22; --muted:#6b7085;
+    }
+  }
+  :root[data-theme="dark"]{ --bg:#12141c; --panel:#1b1e2a; --panel2:#20243380; --line:#2b2f40; --ink:#f1f0ec; --muted:#9298ac; }
+  html{ scroll-padding-top:env(safe-area-inset-top,0px); height:100%; }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; min-height:100%; background:var(--bg); color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif; line-height:1.5;
+  }
+  h1,h2,h3,.tab,.stat-num{ font-family:'Space Grotesk',system-ui,sans-serif; }
+  .wrap{ max-width:840px; margin:0 auto; padding:2.5rem 1.25rem 4rem; }
+  .hero{ display:flex; gap:2rem; flex-wrap:wrap; align-items:flex-end; margin-bottom:2.25rem; }
+  .stat-num{ font-size:clamp(2.6rem,9vw,4.2rem); font-weight:700; letter-spacing:-0.02em; line-height:1; }
+  .stat-num span{ color:var(--accent); }
+  .stat-label{ color:var(--muted); font-size:0.9rem; margin-top:0.35rem; }
+  .goals{ flex:1; min-width:220px; display:flex; flex-direction:column; gap:0.4rem; }
+  .goals li{ list-style:none; font-size:0.92rem; color:var(--muted); }
+  .goals li::before{ content:"→ "; color:var(--accent); }
+  .goals ul{ margin:0; padding:0; }
+  .rules{ display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:2rem; }
+  .chip{ background:var(--panel); border:1px solid var(--line); border-radius:999px; padding:0.4rem 0.85rem; font-size:0.82rem; color:var(--muted); }
+  .order{ font-size:0.85rem; color:var(--muted); margin-bottom:2.25rem; }
+  .order b{ color:var(--ink); }
+  .tabs{ display:flex; overflow-x:auto; gap:0.35rem; padding-bottom:0.5rem; margin-bottom:1.25rem; -webkit-overflow-scrolling:touch; }
+  .tab{ flex:0 0 auto; border:1px solid var(--line); background:var(--panel); color:var(--muted); padding:0.6rem 1rem; border-radius:12px; font-size:0.85rem; font-weight:600; cursor:pointer; transition:border-color .15s, color .15s; }
+  .tab.active{ color:var(--ink); border-color:var(--dot,var(--accent)); box-shadow:inset 0 -3px 0 0 var(--dot,var(--accent)); }
+  .tab .dot{ display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:0.4rem; }
+  .panel{ background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:1.5rem 1.5rem 0.5rem; }
+  .panel-head{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.25rem; }
+  .panel-head h2{ margin:0; font-size:1.3rem; }
+  .panel-head .dur{ font-size:0.8rem; color:var(--muted); background:var(--panel2); padding:0.25rem 0.65rem; border-radius:8px; }
+  .section{ margin-bottom:1.4rem; }
+  .section h3{ margin:0 0 0.5rem; font-size:0.78rem; letter-spacing:0.02em; color:var(--accent-text,var(--ink)); border-left:3px solid var(--dot,var(--accent)); padding-left:0.55rem; }
+  .ex{ display:flex; justify-content:space-between; gap:1rem; padding:0.5rem 0 0.5rem 0.55rem; border-bottom:1px solid var(--line); font-size:0.92rem; }
+  .ex:last-child{ border-bottom:none; }
+  .ex .d{ color:var(--muted); white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .note{ font-size:0.82rem; color:var(--muted); background:var(--panel2); border-radius:10px; padding:0.7rem 0.9rem; margin:0.5rem 0 1.25rem; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0.85rem; margin:2.5rem 0; }
+  .card{ background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:1rem 1.1rem; }
+  .card h4{ margin:0 0 0.5rem; font-size:0.85rem; }
+  .card p{ margin:0; font-size:0.8rem; color:var(--muted); }
+  .fatloss{ margin-top:2.5rem; }
+  .fatloss h2, .prog h2{ font-size:1.15rem; margin-bottom:0.75rem; }
+  .protocol{ display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:1.25rem; }
+  .protocol div{ flex:1; min-width:150px; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:0.75rem 0.9rem; font-size:0.82rem; color:var(--muted); }
+  .protocol div b{ display:block; color:var(--ink); font-size:0.9rem; margin-bottom:0.2rem; }
+  table{ width:100%; border-collapse:collapse; font-size:0.88rem; }
+  td{ padding:0.55rem 0.2rem; border-bottom:1px solid var(--line); }
+  td:last-child{ text-align:right; color:var(--accent); font-weight:600; }
+  .callout{ margin-top:2.5rem; border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:14px; padding:1.1rem 1.25rem; background:var(--panel); }
+  .callout h3{ margin:0 0 0.5rem; font-size:0.95rem; }
+  .callout p{ margin:0 0 0.6rem; font-size:0.87rem; color:var(--muted); }
+  .callout p:last-child{ margin-bottom:0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <div class="stat-num">85 → <span>76–77</span> kg</div>
+      <div class="stat-label">plus a smaller waist and visible abs</div>
+    </div>
+    <div class="goals">
+      <ul>
+        <li>Handstand push-up</li>
+        <li>Full L-sit</li>
+        <li>Planche progression</li>
+        <li>Pull-up → muscle-up</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rules">
+    <span class="chip">10,000–12,000 steps / day</span>
+    <span class="chip">Protein ~1.6–2g/kg (≈135–170g/day)</span>
+    <span class="chip">Deficit ~400–600 kcal/day</span>
+    <span class="chip">Water as main drink</span>
+    <span class="chip">Sleep properly</span>
+  </div>
+  <div class="order">Order every session: <b>skill → strength → optional conditioning.</b> Handstand and planche are skills, don't practice them exhausted.</div>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="panel" id="panel"></div>
+
+  <div class="prog">
+    <h2>Progression ladder</h2>
+    <div class="grid">
+      <div class="card"><h4>Push-ups</h4><p>4×8 → 4×10 → 4×12 → 4×15, then a harder variation</p></div>
+      <div class="card"><h4>L-sit</h4><p>Tuck → one leg → full → longer full → V-sit</p></div>
+      <div class="card"><h4>Handstand</h4><p>Wall hold → longer hold → weight shifts → shoulder taps → freestanding → HSPU</p></div>
+      <div class="card"><h4>Planche</h4><p>Lean → frog stand → tuck → advanced tuck → harder progression</p></div>
+      <div class="card"><h4>Pull-ups</h4><p>2 → 3 → 4 → 5 clean reps, then muscle-up prep</p></div>
+    </div>
+  </div>
+
+  <div class="fatloss">
+    <h2>Fat-loss target: 0.5–1.0 kg / week</h2>
+    <div class="protocol">
+      <div><b>Every morning</b>After bathroom, before food or drink: weigh and record. Track the 7-day average.</div>
+      <div><b>Once a week</b>Measure your waist.</div>
+      <div><b>Judge by</b>Weight average, waist, and calisthenics numbers, not the mirror that day.</div>
+    </div>
+    <table>
+      <tr><td>Weight</td><td>↓</td></tr>
+      <tr><td>Waist</td><td>↓</td></tr>
+      <tr><td>Push-ups</td><td>↑</td></tr>
+      <tr><td>L-sit time</td><td>↑</td></tr>
+      <tr><td>Handstand time</td><td>↑</td></tr>
+      <tr><td>Pull-ups</td><td>↑</td></tr>
+      <tr><td>Pistol squat control</td><td>↑</td></tr>
+      <tr><td>Planche lean time</td><td>↑</td></tr>
+    </table>
+  </div>
+
+  <div class="callout">
+    <h3>Minimum day</h3>
+    <p>When you're exhausted: 10 min handstand/L-sit practice + 10 min push-ups/legs + a walk. That's enough to keep the chain alive. A day like that is a success, not a compromise.</p>
+    <p>The 18.8kg weight covers rows, squats, split squats, and RDLs for the whole week. For the next 4 weeks, don't change this program, just execute it and record the numbers.</p>
+  </div>
+</div>
+
+<script>
+const DAYS = [
+  { day:'MON', full:'Monday', t:'Handstand + Planche + Legs', a:'#8b7ff0', du:'40–50 min',
+    sec:[
+      {h:'Warm-up (5 min)', it:[{n:'Arm circles, wrist circles, shoulder & hip/ankle mobility'}]},
+      {h:'Handstand', it:[{n:'Wall handstand',d:'4 × 20–40 sec'},{n:'Pike push-ups',d:'3 × 6–12'},{n:'Elevated pike push-ups',d:'3 × 5–10'}]},
+      {h:'Planche', it:[{n:'Planche lean',d:'4 × 10–20 sec'},{n:'Frog stand',d:'3 × 10–20 sec'}]},
+      {h:'Legs', it:[{n:'Bulgarian split squat',d:'3 × 8–15 / leg'},{n:'Goblet squat (18.8kg)',d:'3 × 10–15'}]},
+      {h:'Core', it:[{n:'L-sit progression',d:'4 × 10–20 sec'},{n:'Reverse crunch',d:'3 × 12–20'}]}
+    ]},
+  { day:'TUE', full:'Tuesday', t:'Light Skill Day', a:'#a79bf5', du:'20–30 min',
+    sec:[
+      {h:'Handstand', it:[{n:'Wall handstand',d:'5 × 20–30 sec'},{n:'Wall weight shifts',d:'3 × 5–10 / side'}]},
+      {h:'L-sit', it:[{n:'Tuck L-sit',d:'5 × 10–20 sec'},{n:'Seated leg lifts',d:'3 × 8–15'}]},
+      {h:'Pistol squat', it:[{n:'Assisted pistol squat',d:'3 × 5–8 / leg'}]},
+      {h:'Core', it:[{n:'Plank hold',d:'3 × 30–45 sec'}]},
+      {h:'Optional', it:[{n:'Jump rope, easy/moderate',d:'10 min'}]}
+    ], note:'Should leave you feeling better, not destroyed.'},
+  { day:'WED', full:'Wednesday', t:'Pull + Push + Legs', a:'#4fc4b0', du:'40–50 min',
+    sec:[
+      {h:'Pull', it:[{n:'Pull-ups (singles/doubles)',d:'6–8 total reps'},{n:'Scapular pull-ups',d:'3 × 5'},{n:'Negative pull-ups (5–8 sec lower)',d:'3 × 2'},{n:'Dead hang',d:'2 × 15–25 sec'}]},
+      {h:'Push', it:[{n:'Push-ups',d:'4 × 8–15'},{n:'Pike push-ups',d:'3 × 6–12'},{n:'Chair dips',d:'3 × 8–12'}]},
+      {h:'Legs', it:[{n:'Bulgarian split squat',d:'3 × 8–12 / leg'}]},
+      {h:'Core', it:[{n:'Reverse crunch',d:'3 × 12–20'},{n:'Hanging knee raises',d:'3 × 8–15'}]}
+    ], note:'Bar not ready yet? Swap the pull section for one-arm row (18.8kg) 4 × 8–15/side + one-arm RDL 3 × 8–15/side.'},
+  { day:'THU', full:'Thursday', t:'Skill Day', a:'#8b7ff0', du:'25–35 min',
+    sec:[
+      {h:'Handstand', it:[{n:'Wall handstand',d:'4 × 20–40 sec'},{n:'Wall shoulder taps / weight shifts',d:'3 × 5–10'}]},
+      {h:'Planche', it:[{n:'Planche lean',d:'4 × 10–20 sec'},{n:'Frog stand / tuck planche',d:'3 × 10–15 sec'}]},
+      {h:'L-sit', it:[{n:'Tuck or one-leg L-sit',d:'5 × 10–20 sec'},{n:'Seated compression lifts',d:'3 × 8–15'}]},
+      {h:'Core', it:[{n:'Plank hold',d:'3 × 30–45 sec'}]},
+      {h:'Pistol', it:[{n:'Assisted pistol',d:'3 × 5 / leg'}]}
+    ]},
+  { day:'FRI', full:'Friday', t:'Full-Body Strength', a:'#f0954b', du:'40–50 min',
+    sec:[
+      {h:'Push', it:[{n:'Push-ups',d:'4 × 8–15'},{n:'Pike push-ups',d:'3 × 6–12'},{n:'Chair dips',d:'3 × 8–12'}]},
+      {h:'Legs', it:[{n:'Goblet squat',d:'4 × 10–15'},{n:'Bulgarian split squat',d:'3 × 8–12 / leg'}]},
+      {h:'Pull', it:[{n:'Pull-ups',d:'5–8 total reps'},{n:'Scapular pull-ups',d:'3 × 5'}]},
+      {h:'Planche', it:[{n:'Planche lean',d:'3 × 10–20 sec'}]},
+      {h:'Core', it:[{n:'L-sit progression',d:'4 × 10–20 sec'},{n:'Reverse crunch',d:'3 × 12–20'}]}
+    ], note:'No bar? Replace pull with one-arm row (18.8kg) 4 × 8–15 / side.'},
+  { day:'SAT', full:'Saturday', t:'Calisthenics + Conditioning', a:'#e8c547', du:'30–45 min',
+    sec:[
+      {h:'Skill', it:[{n:'Handstand',d:'5 × 20–40 sec'},{n:'L-sit',d:'4 × 10–20 sec'},{n:'Pistol progression',d:'3 × 5–8 / leg'}]},
+      {h:'Conditioning — pick one', it:[{n:'Jump rope',d:'10–15 min'},{n:'Brisk walk',d:'30–45 min'},{n:'Easy jog',d:'20–30 min'}]}
+    ], note:'Then finish your steps for the day. No burpees needed.'},
+  { day:'SUN', full:'Sunday', t:'Recovery', a:'#7fc29b', du:'—',
+    sec:[
+      {h:'Today', it:[{n:'10,000 steps'},{n:'Light stretching / mobility'},{n:'Optional very easy handstand practice'}]}
+    ], note:'This is part of the program, not a wasted day.'}
+];
+
+const tabsEl = document.getElementById('tabs');
+const panelEl = document.getElementById('panel');
+
+function render(i){
+  const d = DAYS[i];
+  document.documentElement.style.setProperty('--dot', d.a);
+  [...tabsEl.children].forEach((t,idx)=>t.classList.toggle('active', idx===i));
+  panelEl.innerHTML = `
+    <div class="panel-head">
+      <h2>${d.full} — ${d.t}</h2>
+      <span class="dur">${d.du}</span>
+    </div>
+    ${d.sec.map(s=>`
+      <div class="section">
+        <h3>${s.h}</h3>${s.it.map(x=>`<div class="ex"><span>${x.n}</span>${x.d?`<span class="d">${x.d}</span>`:''}</div>`).join('')}
+      </div>`).join('')}
+    ${d.note?`<div class="note">${d.note}</div>`:''}
+  `;
+}
+
+DAYS.forEach((d,i)=>{
+  const b = document.createElement('button');
+  b.className = 'tab';
+  b.innerHTML = `<span class="dot" style="background:${d.a}"></span>${d.day}`;
+  b.style.setProperty('--dot', d.a);
+  b.onclick = ()=>render(i);
+  tabsEl.appendChild(b);
+});
+render(new Date().getDay() === 0 ? 6 : new Date().getDay()-1);
+
+// Register service worker for offline support
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js');
+}
+</script>
+</body>
+</html>
